@@ -86,6 +86,7 @@ public:
 	}
 
 private:
+	// Returns true if before and after sizes differ by at most 1
 	inline bool isBalanced() const {
 		const int bs = before.size();
 		const int as = after.size();
