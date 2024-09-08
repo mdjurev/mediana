@@ -63,8 +63,12 @@ public:
 			return before.top();
 		else if(bs==0 && as==0)
 			return T();
-		else
-			return (after.top()+before.top())/2;
+		else {
+			const T b = before.top();
+			const T a = after.top();
+
+			return b+(a-b)/2;
+		}
 	}
 
 	/// Clears the contents

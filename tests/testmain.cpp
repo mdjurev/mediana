@@ -57,6 +57,6 @@ TEST_CASE("Some edge cases") {
     m.clear();
     m.insert(bigInt);
     m.insert(bigInt+2);
-    // CHECK(m.median()==bigInt+1); //fails!
+    CHECK(m.median()==bigInt+1);
 
 }
