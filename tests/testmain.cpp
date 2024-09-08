@@ -1,5 +1,8 @@
 #include <med.h>
 #include <vector>
+#include <numeric>
+#include <random>
+#include <algorithm>
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
@@ -58,5 +61,29 @@ TEST_CASE("Some edge cases") {
     m.insert(bigInt);
     m.insert(bigInt+2);
     CHECK(m.median()==bigInt+1);
+}
+
+
+TEST_CASE("Sequences of 100") {
+    std::vector<float> vs(100);
+    std::iota(vs.begin(), vs.end(), 1.0f);
+    med::MedianTwoHeap<float> m;
+
+    SUBCASE("Increasing order") {
+        for(auto v : vs)
+            m.insert(v);
+    }
+    SUBCASE("Decreasing order") {
+        // no ranges, just use iterators
+        for(auto it=vs.rbegin(); it!=vs.rend(); it++)
+            m.insert(*it);
+    }
+    SUBCASE("Random order") {
+        std::shuffle(vs.begin(), vs.end(), std::minstd_rand0(4/*Chosen by a fair dice roll.*/));
+        for(auto v : vs)
+            m.insert(v);
+    }
+    CHECK(m.size()==100);
+    CHECK(m.median()==50.5f);
 
 }
