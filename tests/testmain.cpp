@@ -105,3 +105,23 @@ TEST_CASE("Basic constructors and assignment") {
     CHECK(mf.size()==100);
     CHECK(mf.median()==50.5f);
 }
+
+TEST_CASE("Appending with an iterator") {
+    std::vector<int> vs(50);
+    std::iota(vs.begin(), vs.end(), 1);
+    med::MedianTwoHeap<int> m;
+    m.insert(vs.begin(), vs.end());
+    CHECK(m.median()==25);
+    std::iota(vs.rbegin(), vs.rend(), 51);
+    CHECK(vs[0]==100);
+    CHECK(vs[49]==51);
+    m.insert(vs.begin(), vs.end());
+    CHECK(m.median()==50);
+}
+
+TEST_CASE("Repeating elements") {
+    med::MedianTwoHeap<int> m{1,2,2,1};
+    CHECK(m.median()==2);
+    med::MedianTwoHeap<int> m2{1,1,1,1,1};
+    CHECK(m2.median()==1);
+}

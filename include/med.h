@@ -29,8 +29,7 @@ public:
 	}
 	template<class InputIt>
 	MedianTwoHeap(InputIt iBegin, InputIt iEnd) {
-		for(InputIt it=iBegin; it!=iEnd; it++)
-			insert(*it);
+		insert(iBegin, iEnd);
 	}
 	/// Inserts an element into the structure
 	void insert(const T& t) {
@@ -58,6 +57,13 @@ public:
 				after.push(t);
 		}
 		rebalance();
+	}
+
+	/// Convenience method for inserting many elements via an iterator
+	template<class InputIt>
+	void insert(InputIt iBegin, InputIt iEnd ) {
+		for(InputIt it=iBegin; it!=iEnd; it++)
+			insert(*it);
 	}
 
 	/// Returns the median of the contents
