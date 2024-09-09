@@ -55,8 +55,8 @@ public:
 	/// Returns the median of the contents
 	/// If the size is even, returns the average of the two middle elements 
 	T median() const noexcept{
-		const int bs = before.size();
-		const int as = after.size();
+		const int bs = (int)before.size();
+		const int as = (int)after.size();
 		if(as>bs)
 			return after.top();
 		else if(bs<as)
@@ -92,16 +92,16 @@ public:
 private:
 	// Returns true if before and after sizes differ by at most 1
 	inline bool isBalanced() const {
-		const int bs = before.size();
-		const int as = after.size();
+		const size_t bs = before.size();
+		const size_t as = after.size();
 		return (bs==as || as==bs+1 || bs==as+1);
 	}
 	// Make sure that before and after sizes differ by at most 1
 	void rebalance() {
 		if(isBalanced())
 			return;
-		const int bs = before.size();
-		const int as = after.size();
+		const size_t bs = before.size();
+		const size_t as = after.size();
 		if(bs>as) {
 			after.push(before.top());
 			before.pop();
