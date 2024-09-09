@@ -24,6 +24,16 @@ class MedianTwoHeap {
 	MinHeap after;
 
 public:
+	MedianTwoHeap(){}
+	MedianTwoHeap(std::initializer_list<T> init) {
+		for(const T& t :init)
+			insert(t);
+	}
+	template<class InputIt>
+	MedianTwoHeap(InputIt iBegin, InputIt iEnd) {
+		for(InputIt it=iBegin; it!=iEnd; it++)
+			insert(*it);
+	}
 	/// Inserts an element into the structure
 	void insert(const T& t) {
 		if(after.empty()) {

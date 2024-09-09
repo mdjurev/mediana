@@ -85,5 +85,27 @@ TEST_CASE("Sequences of 100") {
     }
     CHECK(m.size()==100);
     CHECK(m.median()==50.5f);
+}
 
+TEST_CASE("Initializer list constructor") {
+    med::MedianTwoHeap<int> m {1,2,3,4,5,6,7};
+    CHECK(m.size()==7);
+    CHECK(m.median()==4);
+}
+
+TEST_CASE("Basic constructors and assignment") {
+    med::MedianTwoHeap<int> m7 {1,2,3,4,5,6,7};
+    med::MedianTwoHeap<int> m5 {1,2,3,4,5};
+    med::MedianTwoHeap<int> a(m7);
+    CHECK(a.size()==7);
+    CHECK(a.median()==4);
+    a=m5;
+    CHECK(a.size()==5);
+    CHECK(a.median()==3);
+
+    std::vector<float> vs(100);
+    std::iota(vs.begin(), vs.end(), 1.0f);
+    med::MedianTwoHeap<float> mf(vs.begin(), vs.end());
+    CHECK(mf.size()==100);
+    CHECK(mf.median()==50.5f);
 }
