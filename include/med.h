@@ -54,7 +54,7 @@ public:
 
 	/// Returns the median of the contents
 	/// If the size is even, returns the average of the two middle elements 
-	T median() const {
+	T median() const noexcept{
 		const int bs = before.size();
 		const int as = after.size();
 		if(as>bs)
@@ -81,11 +81,11 @@ public:
 	}
 
 	/// Checks whether the container is empty
-	bool empty() const {
+	bool empty() const noexcept{
 		return before.empty() && after.empty();
 	}
 
-	size_type size() const {
+	size_type size() const noexcept {
 		return before.size()+after.size();
 	}
 
