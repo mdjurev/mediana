@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.24)
 project(Mediana VERSION 1.0 LANGUAGES CXX)
 
 function(set_compiler_options TARGET_NAME)
+	target_compile_features(${TARGET_NAME} PRIVATE cxx_std_14)
 	set_property(TARGET ${TARGET_NAME} PROPERTY COMPILE_WARNING_AS_ERROR ON)
 	if(MSVC)
 		target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
@@ -18,6 +19,7 @@ set(CMAKE_COMPILE_WARNING_AS_ERROR ON)
 
 add_library(med INTERFACE include/med.h)
 target_include_directories(med INTERFACE include)
+target_compile_features(med INTERFACE cxx_std_14)
 
 
 option (MED_BENCHMARK "Enable benchmarking executable" ON)
