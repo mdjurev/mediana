@@ -7,8 +7,6 @@
 
 namespace med
 {
-// just for CMake setup
-inline int mySum(int a, int b) { return a+b;}
 
 /// Data structure that allows adding of elements and extracting a median. Maintains two heaps.
 /// There are two heaps, max-heap (before) and min-heap (after).

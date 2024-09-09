@@ -9,10 +9,6 @@
 
 using namespace std;
 
-TEST_CASE("testing mySum") {
-    CHECK(med::mySum(2,5) == 7);
-}
-
 TEST_CASE("Basic median test") {
     vector<int> vs = {1,2,3,4,5};
     med::MedianTwoHeap<int> m;
